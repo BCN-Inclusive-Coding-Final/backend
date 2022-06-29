@@ -1,4 +1,5 @@
 import { User } from "../models/User";
+import {sign} from "jsonwebtoken";
 
 export const SignUp = async (req, res) => {
     try {
@@ -16,9 +17,11 @@ export const SignUp = async (req, res) => {
         const saveUser = await user.save();
 
         // Generate JWT
+        const token = sign({ id: saveUser._id }, process.env.SECRETORPRIVATEKEY, { expiresIn: '4h' })
 
         res.status(200).json({
-            user
+            user,
+            token
         })
 
     } catch (error) {
