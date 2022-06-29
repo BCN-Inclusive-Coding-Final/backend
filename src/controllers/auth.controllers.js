@@ -1,5 +1,5 @@
-import { User } from "../models/User";
-import {sign} from "jsonwebtoken";
+import { User } from '../models/User';
+import {sign} from 'jsonwebtoken';
 
 export const SignUp = async (req, res) => {
     try {

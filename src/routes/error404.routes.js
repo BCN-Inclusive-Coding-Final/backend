@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { error404 } from "../controllers/error404.controllers";
+import { Router } from 'express';
+import { error404 } from '../controllers/error404.controllers';
 
 const router = Router();
 
