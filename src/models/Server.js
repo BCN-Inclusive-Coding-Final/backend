@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 
+import { connectDB } from '../db/config';
+
+import routerError404 from '../routes/error404.routes';
 import routerAuth from '../routes/auth.routes';
 
 class Server {
@@ -10,10 +13,12 @@ class Server {
         this.path = {
             auth: '/auth',
             give: '/give',
-            want: '/want'
+            want: '/want',
+            error404: '*'
         };
 
         this.middlewares();
+        this.dbConnect();
         this.routes();
         this.listen();
     };
@@ -23,8 +28,13 @@ class Server {
         this.app.use(cors());
     };
 
-    routes(){
+    async dbConnect() {
+        await connectDB();
+    }
+
+    routes() {
         this.app.use(this.path.auth, routerAuth);
+        this.app.use(this.path.error404, routerError404);
     };
 
     listen() {

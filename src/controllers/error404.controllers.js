@@ -1,15 +1,11 @@
-export const signIn = (req, res) => {
+export const error404 = (req, res) => {
     try {
-        res.status(200).json({
-            msg: 'Login'
+        res.status(404).json({
+            msg: 'Error 404 - Page Not Found'
         });
     } catch (error) {
         res.status(500).json({
             msg: 'Error 500 - Internal Server Error'
         });
     };
-};
-
-export const SignUp = (req, res) => {
-
 };
