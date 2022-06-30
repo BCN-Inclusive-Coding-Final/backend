@@ -30,4 +30,5 @@ category <br>
 state <br>
 description <br>
 giveOrWant <br>
+image <br>
 userId <br>
