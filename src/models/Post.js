@@ -16,7 +16,7 @@ const PostSchema = new Schema({
     description: {
         type: String,
         required: [true, 'Description is requied']
-    }, 
+    },
     image: {
         type: String,
         default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'

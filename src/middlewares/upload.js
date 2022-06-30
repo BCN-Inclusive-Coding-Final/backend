@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
 
 // Filtering by mimetimes
 const fileFilter = (req, file, cb) => {
-    const fileTypes = ['text/csv'];
+    const fileTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
 
     if (fileTypes.some(fileType => fileType === file.mimetype)) return cb(null, true);
 
