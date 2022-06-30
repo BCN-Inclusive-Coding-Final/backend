@@ -4,7 +4,7 @@ import { User } from '../models/User';
 
 // Validation that the entered token is correct.
 
-export const validateToken = (req, res, next) => {
+export const validateToken = async (req, res, next) => {
     const accesToken = req.header('authorization') || req.query.accesstoken;
     if (!accesToken) {
         return res.status(400).json({
