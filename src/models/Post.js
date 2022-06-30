@@ -13,7 +13,7 @@ const PostSchema = new Schema({
     description: {
         type: String,
         required: [true, 'Description is requied']
-    }, 
+    },
     image: {
         type: String,
         default: 'image/url'
