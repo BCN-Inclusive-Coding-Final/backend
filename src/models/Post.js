@@ -26,6 +26,10 @@ const PostSchema = new Schema({
         enum: ['give', 'want'],
         required: true
     },
+    userId:{
+        type: String,
+        required: [true, 'User ID is required.']
+    },
     createdAt: { type: Date, default: new Date() }
 },
     {
