@@ -1,5 +1,5 @@
 import { User } from '../models/User';
-import {sign} from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 
 export const SignUp = async (req, res) => {
     try {
@@ -12,6 +12,14 @@ export const SignUp = async (req, res) => {
             email,
             password: await User.encryptPassword(password)
         });
+
+        // Check if email exists
+        const emailExist = await User.find({email})
+        if(emailExist){
+            return res.status(400).json({
+                msg: 'That email already exists'
+            });
+        };
 
         // Save to DB
         const saveUser = await user.save();
@@ -26,16 +34,39 @@ export const SignUp = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({
-            msg: 'Error 500 - Internal Server Error'
+            msg: 'Error 500 - Internal Server Error',
         })
     };
 };
 
-export const signIn = (req, res) => {
-
+export const signIn = async (req, res) => {
     try {
+
+        // Check if the user exists with the email
+        const userDB = await User.find({ email: req.body.email });
+
+        if (!userDB) {
+            return res.status(403).json({
+                msg: 'Email doesn`t exists.'
+            });
+        };
+
+        // Validate password
+        const validPassword = await User.comparePassword(req.body.password, userDB.password);
+
+        if(!validPassword){
+            return res.status(403).json({
+                token: null,
+                msg: 'The password you entered is not correct.'
+            });
+        };
+
+        // Get token
+        const token = sign({ id: userDB._id }, process.env.SECRETORPRIVATEKEY, { expiresIn: '4h' });
+
         res.status(200).json({
-            msg: 'Login'
+            user: userDB,
+            token
         });
     } catch (error) {
         res.status(500).json({

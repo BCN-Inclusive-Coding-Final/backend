@@ -20,9 +20,13 @@ const UserSchema = new Schema({
         type: String,
         required: [true, 'Password is required!!']
     }
-});
+},
+    {
+        timestamps: true,
+        versionKey: false
+    });
 
-UserSchema.statics.encryptPassword = async () => {
+UserSchema.statics.encryptPassword = async (password) => {
     const salt = await bcryptjs.genSalt(10);
     return await bcryptjs.hash(password, salt)
 };
