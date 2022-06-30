@@ -1,12 +1,13 @@
 import { Post } from '../models/Post'
 
 export const createPost = async (req, res) => {
-  const {title, category, style, description, image} = req.body
+  const { title, category, state, description, giveOrWant, image} = req.body
   const newPost = new Post({
     title,
     category,
-    style,
+    state,
     description,
+    giveOrWant,
     image
   })
   try {
