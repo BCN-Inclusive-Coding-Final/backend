@@ -51,7 +51,7 @@ export const signIn = async (req, res) => {
         };
 
         // Validate password
-        const validPassword = await User.comparePassword(req.body.password, userDB.password);
+     /*    const validPassword = await User.comparePassword(req.body.password, userDB.password);
 
         if (!validPassword) {
             return res.status(403).json({
@@ -59,7 +59,7 @@ export const signIn = async (req, res) => {
                 msg: 'The password you entered is not correct.'
             });
         };
-
+ */
         // Get token
         const token = sign({ id: userDB._id }, process.env.SECRETORPRIVATEKEY, { expiresIn: '4h' });
 
