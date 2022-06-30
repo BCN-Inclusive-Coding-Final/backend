@@ -7,15 +7,15 @@
 http://localhost:8080/auth/signup
 ```
 
-firstName
-lastName
-email
-password
+firstName <br>
+lastName <br>
+email <br>
+password <br>
 
 ### Sign In
 ```
 http://localhost:8080/auth/signin
 ```
 
-email
-password
+email <br>
+password <br>
