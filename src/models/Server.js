@@ -5,6 +5,7 @@ import { connectDB } from '../db/config';
 
 import routerError404 from '../routes/error404.routes';
 import routerAuth from '../routes/auth.routes';
+import routerPost from '../routes/posts.routes';
 
 class Server {
     constructor() {
@@ -14,6 +15,7 @@ class Server {
             auth: '/auth',
             give: '/give',
             want: '/want',
+            post:'/post',
             error404: '*'
         };
 
@@ -34,6 +36,7 @@ class Server {
 
     routes() {
         this.app.use(this.path.auth, routerAuth);
+        this.app.use(this.path.post, routerPost);
         this.app.use(this.path.error404, routerError404);
     };
 
