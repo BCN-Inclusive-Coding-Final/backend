@@ -3,13 +3,15 @@ import mongoose from 'mongoose'
 import { Post } from '../models/Post'
 
 export const createPost = async (req, res) => {
-  const { title, category, state, description, image } = req.body
-  const post = { title, category, state, description, image }
+
+  const { title, category, state, description, giveOrWant, image, userId } = req.body
+  const post = { title, category, state, description, giveOrWant, image, userId }
   const newPost = new Post({
     post,
     creator: req.userId,
     createdAt: new Date().toISOString()
   })
+
 
   try {
     await newPost.save()

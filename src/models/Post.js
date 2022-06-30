@@ -9,7 +9,10 @@ const PostSchema = new Schema({
         type: String,
         required: [true, 'Category is requied']
     },
-    state: String,
+    state: {
+        type: String,
+        enum: ['nuevo', 'seminuevo', 'usado']
+    },
     description: {
         type: String,
         required: [true, 'Description is requied']
@@ -17,6 +20,15 @@ const PostSchema = new Schema({
     image: {
         type: String,
         default: 'image/url'
+    },
+    giveOrWant: {
+        type: String,
+        enum: ['give', 'want'],
+        required: true
+    },
+    userId:{
+        type: String,
+        required: [true, 'User ID is required.']
     },
     createdAt: { type: Date, default: new Date() }
 },
